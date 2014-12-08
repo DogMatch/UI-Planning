@@ -1,0 +1,72 @@
+//User Flow for Bone App MVP Version 0.1
+digraph BoneAppUserFlow {
+  nodesep=1.0 //space between nodes
+  node[shape=box]
+  a[label="Landing Page"]
+  SignUp[label="Initial Sign Up"]
+  SignUp1[label="Required: Username, Email, Password"]
+  LogIn[label="Sign In"]
+  LogIn1[label="Enter or Retrieve Username & Password"]
+  EditProfile[label="Set Up / Edit Profile"]
+  EditProfile1[label="Enter Dog's Name / Breed"]
+  EditProfile2[label="Enter Neighborhood"]
+  EditProfile3[label="Upload Photo"]
+  EditProfileOutput[label="Save Profile"]
+  UserHome[label="User Home Page"]
+  MatchList[label="List of Matches"]
+  MLRemove[label="Remove Match"]
+  Messages
+  SendMessage[label="Send A Message"]
+  Inbox
+  MessX1[label="Most Recent Message 1"]
+  MessX1Reply[label="Reply"]
+  MessX1Profile[label="Sender's Profile"]
+  MessX2[label="Most Recent Message 2"]
+  MessX2Profile[label="Sender's Profile"]
+  MessX2Reply[label="Reply"]
+  MessX3[label="Most Recent Message n"]
+  MessX3Profile[label="Sender's Profile"]
+  MessX3Reply[label="Reply"]
+  MatchGame[label="Match Game"]
+  MatchProfile[label="Profile to Like/Dislike"]
+  MatchLike[label="Add To Potential Match"]
+  MatchDislike[label="Add To Block List"]
+
+
+
+
+  a -> SignUp [label="New User"];
+  SignUp -> SignUp1;
+  SignUp1 -> EditProfile [label="Username/PW valid"];
+  EditProfile -> EditProfile1;
+  EditProfile -> EditProfile2;
+  EditProfile -> EditProfile3;
+  EditProfile1 -> EditProfileOutput;
+  EditProfile2 -> EditProfileOutput;
+  EditProfile3 -> EditProfileOutput;
+  EditProfileOutput -> UserHome;
+  a -> LogIn [label="Existing User"];
+  LogIn -> LogIn1;
+  LogIn1 -> UserHome;
+  UserHome -> EditProfile;
+  UserHome -> MatchList;
+  MatchList -> SendMessage;
+  MatchList -> Messages;
+  MatchList -> MLRemove;
+  Messages -> Inbox;
+  Inbox -> MessX1;
+  MessX1 -> MessX1Profile;
+  MessX1 -> MessX1Reply;
+  Inbox -> MessX2;
+  MessX2 -> MessX2Profile;
+  MessX2 -> MessX2Reply;
+  Inbox -> MessX3;
+  MessX3 -> MessX3Profile;
+  MessX3 -> MessX3Reply;
+  UserHome -> MatchGame[label="Start Match Game"];
+  MatchGame -> MatchProfile
+  MatchProfile -> MatchLike[label="Like!"]
+  MatchProfile -> MatchDislike[label="Dislike!"]
+  MatchDislike -> MatchGame[label="New Profile"]
+  MatchLike -> MatchGame[label="New Profile"]
+}
